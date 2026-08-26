@@ -1,0 +1,849 @@
+<!--
+  Масштаб — общий код для Tilda.
+  Вставляется ОДИН РАЗ в Настройках сайта (не страницы!):
+  Настройки сайта → Ещё → Вставить код → «Вставить код в HEAD каждой страницы сайта».
+  После этого код действует на всех страницах — повторять его в блоках не нужно.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --msht-navy: #0A1E3A;
+    --msht-navy-light: #12294f;
+    --msht-orange: #FF6A00;
+    --msht-orange-dark: #e05f00;
+    --msht-white: #FFFFFF;
+    --msht-gray: #E6E9EF;
+    --msht-text-muted: #6b7688;
+    --msht-radius: 16px;
+    --msht-container: 1160px;
+  }
+
+  /* Все классы ниже намеренно с префиксом msht-, чтобы не конфликтовать
+     с собственными классами Tilda (t-, t123 и т.д.) на той же странице. */
+
+  .msht-container {
+    width: 100%;
+    max-width: var(--msht-container);
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  .msht-container * {
+    box-sizing: border-box;
+  }
+
+  .msht-container img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .msht-container a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .msht-container h1,
+  .msht-container h2,
+  .msht-container h3,
+  .msht-container h4 {
+    font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 16px;
+    color: var(--msht-navy);
+  }
+
+  .msht-container p,
+  .msht-container li,
+  .msht-container input,
+  .msht-container textarea,
+  .msht-container button {
+    font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+  }
+
+  .msht-container p {
+    margin: 0 0 16px;
+    color: var(--msht-navy);
+  }
+
+  .msht-container ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .msht-section {
+    padding: 72px 0;
+    background: var(--msht-white);
+  }
+
+  .msht-section--gray {
+    background: var(--msht-gray);
+  }
+
+  .msht-section--navy {
+    background: var(--msht-navy);
+    color: var(--msht-white);
+  }
+
+  .msht-section--navy h1,
+  .msht-section--navy h2,
+  .msht-section--navy h3,
+  .msht-section--navy p {
+    color: var(--msht-white);
+  }
+
+  .msht-eyebrow {
+    color: var(--msht-orange);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 13px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .msht-section-head {
+    max-width: 640px;
+    margin: 0 0 48px;
+  }
+
+  .msht-section-head p {
+    color: var(--msht-text-muted);
+    font-size: 18px;
+  }
+
+  .msht-section--navy .msht-section-head p {
+    color: #b9c3d6;
+  }
+
+  /* Кнопки */
+
+  .msht-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .msht-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .msht-btn--primary {
+    background: var(--msht-orange);
+    color: var(--msht-white);
+  }
+
+  .msht-btn--primary:hover {
+    background: var(--msht-orange-dark);
+    color: var(--msht-white);
+  }
+
+  .msht-btn--outline {
+    background: transparent;
+    border-color: var(--msht-white);
+    color: var(--msht-white);
+  }
+
+  .msht-btn--outline-navy {
+    background: transparent;
+    border-color: var(--msht-navy);
+    color: var(--msht-navy);
+  }
+
+  .msht-btn-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Шапка */
+
+  .msht-header {
+    background: var(--msht-navy);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .msht-header .msht-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    gap: 24px;
+  }
+
+  .msht-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--msht-white);
+  }
+
+  .msht-logo-mark {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .msht-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .msht-logo-text strong {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--msht-white);
+  }
+
+  .msht-logo-text span {
+    font-size: 10px;
+    color: #b9c3d6;
+    letter-spacing: 0.03em;
+  }
+
+  .msht-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+  }
+
+  .msht-nav-links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .msht-nav-links a {
+    color: #d7deea;
+    font-size: 15px;
+    font-weight: 600;
+    transition: color 0.15s ease;
+  }
+
+  .msht-nav-links a:hover,
+  .msht-nav-links a[aria-current="page"] {
+    color: var(--msht-white);
+  }
+
+  .msht-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .msht-nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--msht-white);
+    margin: 5px 0;
+  }
+
+  /* Hero */
+
+  .msht-hero {
+    background: var(--msht-navy);
+    color: var(--msht-white);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 96px;
+  }
+
+  .msht-hero::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 420px;
+    height: 420px;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 106, 0, 0.12) 0,
+      rgba(255, 106, 0, 0.12) 2px,
+      transparent 2px,
+      transparent 26px
+    );
+    transform: rotate(20deg);
+    pointer-events: none;
+  }
+
+  .msht-hero-inner {
+    max-width: 680px;
+    position: relative;
+  }
+
+  .msht-hero h1 {
+    font-size: 44px;
+    color: var(--msht-white);
+  }
+
+  .msht-hero p.msht-lead {
+    font-size: 18px;
+    color: #d7deea;
+    max-width: 560px;
+  }
+
+  /* Блок доверия */
+
+  .msht-trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: -56px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .msht-trust-card {
+    background: var(--msht-white);
+    border-radius: var(--msht-radius);
+    padding: 28px 24px;
+    box-shadow: 0 20px 40px rgba(10, 30, 58, 0.12);
+  }
+
+  .msht-trust-card strong {
+    display: block;
+    font-size: 15px;
+    color: var(--msht-navy);
+  }
+
+  .msht-trust-card .msht-value {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--msht-orange);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  /* Наш подход */
+
+  .msht-approach-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+
+  .msht-icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 106, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .msht-icon-badge svg {
+    width: 24px;
+    height: 24px;
+    color: var(--msht-orange);
+  }
+
+  .msht-approach-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .msht-approach-card p {
+    font-size: 14px;
+    color: var(--msht-text-muted);
+    margin: 0;
+  }
+
+  /* Карточки услуг */
+
+  .msht-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .msht-service-card {
+    background: var(--msht-white);
+    border-radius: var(--msht-radius);
+    padding: 32px 24px;
+    border: 1px solid var(--msht-gray);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .msht-service-card:hover {
+    box-shadow: 0 16px 32px rgba(10, 30, 58, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .msht-service-card .msht-icon-badge {
+    background: rgba(10, 30, 58, 0.06);
+  }
+
+  .msht-service-card .msht-icon-badge svg {
+    color: var(--msht-navy);
+  }
+
+  .msht-service-card h3 {
+    font-size: 18px;
+  }
+
+  .msht-service-card p {
+    color: var(--msht-text-muted);
+    font-size: 15px;
+    flex-grow: 1;
+  }
+
+  .msht-card-link {
+    font-weight: 700;
+    color: var(--msht-orange);
+    font-size: 14px;
+    margin-top: 12px;
+    display: inline-block;
+  }
+
+  /* Шаги процесса */
+
+  .msht-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    counter-reset: msht-step;
+  }
+
+  .msht-step-card {
+    position: relative;
+    padding: 28px 24px 24px;
+    background: var(--msht-white);
+    border-radius: var(--msht-radius);
+    border: 1px solid var(--msht-gray);
+  }
+
+  .msht-step-card::before {
+    counter-increment: msht-step;
+    content: counter(msht-step, decimal-leading-zero);
+    color: var(--msht-orange);
+    font-weight: 800;
+    font-size: 22px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .msht-step-card h3 {
+    font-size: 16px;
+  }
+
+  .msht-step-card p {
+    color: var(--msht-text-muted);
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* Карточки кейсов (тизер) */
+
+  .msht-case-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .msht-case-card {
+    background: var(--msht-navy);
+    color: var(--msht-white);
+    border-radius: var(--msht-radius);
+    padding: 28px 24px;
+  }
+
+  .msht-case-card .msht-eyebrow {
+    color: #97e0c2;
+  }
+
+  .msht-case-card h3 {
+    font-size: 17px;
+    color: var(--msht-white);
+  }
+
+  .msht-case-card .msht-metric {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--msht-orange);
+    display: block;
+    margin: 8px 0;
+  }
+
+  .msht-case-card p {
+    color: #b9c3d6;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* Полные карточки кейсов на странице «Кейсы» */
+
+  .msht-case-entry {
+    background: var(--msht-white);
+    border: 1px solid var(--msht-gray);
+    border-radius: var(--msht-radius);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+
+  .msht-case-entry.msht-case-entry--dashed {
+    border-style: dashed;
+  }
+
+  .msht-case-entry h3 {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .msht-niche {
+    color: var(--msht-orange);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .msht-case-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 16px;
+  }
+
+  .msht-case-columns h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--msht-text-muted);
+    margin-bottom: 8px;
+  }
+
+  .msht-case-columns p {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .msht-case-columns .msht-result p {
+    font-weight: 700;
+    color: var(--msht-navy);
+  }
+
+  .msht-case-note {
+    font-size: 13px;
+    color: var(--msht-text-muted);
+    margin-top: 16px;
+    font-style: italic;
+  }
+
+  .msht-callout {
+    background: var(--msht-gray);
+    border-radius: var(--msht-radius);
+    padding: 24px 28px;
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  /* Основатель */
+
+  .msht-founder-block {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .msht-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--msht-radius);
+    object-fit: cover;
+    background: var(--msht-gray);
+  }
+
+  /* Цифры о компании */
+
+  .msht-numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .msht-number-card {
+    text-align: center;
+    padding: 28px 16px;
+    background: var(--msht-gray);
+    border-radius: var(--msht-radius);
+  }
+
+  .msht-number-card .msht-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--msht-orange);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .msht-number-card .msht-label {
+    font-size: 14px;
+    color: var(--msht-navy);
+  }
+
+  /* Формы и контакты */
+
+  .msht-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .msht-form-field {
+    margin-bottom: 20px;
+  }
+
+  .msht-form-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--msht-navy);
+  }
+
+  .msht-form-field input,
+  .msht-form-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #cfd6e4;
+    font-size: 15px;
+  }
+
+  .msht-form-field textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .msht-contact-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--msht-gray);
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+
+  .msht-contact-list strong {
+    color: var(--msht-text-muted);
+    font-weight: 600;
+  }
+
+  .msht-note {
+    font-size: 13px;
+    color: var(--msht-text-muted);
+    background: var(--msht-gray);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 8px;
+  }
+
+  /* Блог */
+
+  .msht-blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .msht-blog-card {
+    border: 1px dashed #cfd6e4;
+    border-radius: var(--msht-radius);
+    padding: 28px 24px;
+    color: var(--msht-text-muted);
+  }
+
+  .msht-blog-card h3 {
+    font-size: 16px;
+    color: var(--msht-navy);
+  }
+
+  /* CTA-баннер */
+
+  .msht-cta-banner {
+    background: var(--msht-navy);
+    color: var(--msht-white);
+    border-radius: 24px;
+    padding: 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .msht-cta-banner::after {
+    content: "";
+    position: absolute;
+    left: -40px;
+    bottom: -60px;
+    width: 320px;
+    height: 320px;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 106, 0, 0.12) 0,
+      rgba(255, 106, 0, 0.12) 2px,
+      transparent 2px,
+      transparent 26px
+    );
+    transform: rotate(-15deg);
+  }
+
+  .msht-cta-banner h2 {
+    font-size: 30px;
+    position: relative;
+    color: var(--msht-white);
+  }
+
+  .msht-cta-banner .msht-btn-row {
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Футер */
+
+  .msht-footer {
+    background: var(--msht-navy);
+    color: #b9c3d6;
+    padding: 56px 0 28px;
+  }
+
+  .msht-footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .msht-footer-grid h4 {
+    color: var(--msht-white);
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .msht-footer-grid ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .msht-footer-grid ul a:hover {
+    color: var(--msht-white);
+  }
+
+  .msht-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Адаптив */
+
+  @media (max-width: 960px) {
+    .msht-trust-grid,
+    .msht-approach-grid,
+    .msht-card-grid,
+    .msht-steps-grid,
+    .msht-case-grid,
+    .msht-case-columns,
+    .msht-numbers-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .msht-founder-block,
+    .msht-form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .msht-footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .msht-nav-links {
+      display: none;
+    }
+
+    .msht-nav-toggle {
+      display: block;
+    }
+
+    .msht-nav.msht-open .msht-nav-links {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--msht-navy);
+      flex-direction: column;
+      padding: 16px 24px 24px;
+      gap: 16px;
+    }
+
+    .msht-hero h1 {
+      font-size: 32px;
+    }
+
+    .msht-trust-grid,
+    .msht-approach-grid,
+    .msht-card-grid,
+    .msht-steps-grid,
+    .msht-case-grid,
+    .msht-case-columns,
+    .msht-numbers-grid,
+    .msht-footer-grid,
+    .msht-blog-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .msht-cta-banner {
+      padding: 40px 24px;
+    }
+
+    .msht-cta-banner h2 {
+      font-size: 24px;
+    }
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".msht-nav-toggle").forEach(function (toggle) {
+      var nav = toggle.closest(".msht-nav");
+      if (!nav) return;
+      toggle.addEventListener("click", function () {
+        nav.classList.toggle("msht-open");
+      });
+    });
+  });
+</script>

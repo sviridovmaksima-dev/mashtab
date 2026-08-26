@@ -1,0 +1,128 @@
+<!--
+  Страница «Контакты» — блоки для Tilda.
+
+  ВАЖНО про форму: блок ниже — это просто вёрстка формы, без реальной
+  отправки заявок. HTML-блок (T123) сам по себе не умеет принимать
+  заявки в почту/CRM Tilda. Рекомендуется:
+  - либо заменить блок формы на нативный блок Tilda (T027 «Форма» и
+    похожие) — тогда заявки будут приходить в почту/Telegram/CRM Tilda
+    как обычно, просто оформите его в цветах msht- через настройки блока;
+  - либо подключить сторонний обработчик формы (email-сервис, вебхук
+    в вашу CRM) и вписать его в атрибут action/JS ниже вместо заглушки.
+-->
+
+<!-- ===== TILDA БЛОК: Шапка ===== -->
+<header class="msht-header">
+  <div class="msht-container">
+    <a href="/" class="msht-logo">
+      <img class="msht-logo-mark" src="ЗАМЕНИТЬ_НА_ССЫЛКУ_ЛОГОТИПА" alt="Масштаб">
+      <span class="msht-logo-text">
+        <strong>МАСШТАБ</strong>
+        <span>системы продаж · CRM · подбор персонала</span>
+      </span>
+    </a>
+    <nav class="msht-nav">
+      <ul class="msht-nav-links">
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/cases">Кейсы</a></li>
+        <li><a href="/about">О компании</a></li>
+        <li><a href="/blog">Блог</a></li>
+        <li><a href="/contacts" aria-current="page">Контакты</a></li>
+      </ul>
+      <a href="/contacts" class="msht-btn msht-btn--primary">Обсудить проект</a>
+      <button class="msht-nav-toggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+<!-- ===== КОНЕЦ БЛОКА: Шапка ===== -->
+
+
+<!-- ===== TILDA БЛОК: Заголовок страницы ===== -->
+<section class="msht-hero" style="padding: 56px 0;">
+  <div class="msht-container">
+    <div class="msht-hero-inner">
+      <h1 style="font-size: 34px;">Обсудим ваш проект</h1>
+      <p class="msht-lead">Оставьте заявку — свяжемся в течение рабочего дня и предложим следующий шаг.</p>
+    </div>
+  </div>
+</section>
+<!-- ===== КОНЕЦ БЛОКА: Заголовок страницы ===== -->
+
+
+<!-- ===== TILDA БЛОК: Форма и контакты ===== -->
+<section class="msht-section">
+  <div class="msht-container">
+    <div class="msht-form-grid">
+      <div>
+        <h2>Оставить заявку</h2>
+        <form class="msht-contact-form" onsubmit="return false;">
+          <div class="msht-form-field">
+            <label for="msht-name">Имя</label>
+            <input type="text" id="msht-name" name="name" required>
+          </div>
+          <div class="msht-form-field">
+            <label for="msht-phone">Телефон или email</label>
+            <input type="text" id="msht-phone" name="phone" required>
+          </div>
+          <div class="msht-form-field">
+            <label for="msht-message">Комментарий</label>
+            <textarea id="msht-message" name="message"></textarea>
+          </div>
+          <button type="submit" class="msht-btn msht-btn--primary" onclick="this.closest('.msht-contact-form').querySelector('.msht-form-status').style.display='block';">Отправить</button>
+          <p class="msht-form-status msht-note" style="display:none; margin-top:16px;">
+            Форма-заглушка: замените этот блок на нативную форму Tilda или подключите
+            обработчик, чтобы заявки реально приходили вам.
+          </p>
+        </form>
+      </div>
+      <div>
+        <h2>Контакты</h2>
+        <ul class="msht-contact-list">
+          <li><strong>Телефон</strong> <span>[ЗАПОЛНИТЬ]</span></li>
+          <li><strong>Email</strong> <span>[ЗАПОЛНИТЬ]</span></li>
+          <li><strong>WhatsApp / Telegram</strong> <span>[ЗАПОЛНИТЬ]</span></li>
+          <li><strong>Город / офис</strong> <span>[ЗАПОЛНИТЬ]</span></li>
+        </ul>
+        <p class="msht-note">[ЗАПОЛНИТЬ: ссылки на соцсети и карту, если есть физический адрес]</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== КОНЕЦ БЛОКА: Форма и контакты ===== -->
+
+
+<!-- ===== TILDA БЛОК: Футер ===== -->
+<footer class="msht-footer">
+  <div class="msht-container">
+    <div class="msht-footer-grid">
+      <div>
+        <a href="/" class="msht-logo">
+          <img class="msht-logo-mark" src="ЗАМЕНИТЬ_НА_ССЫЛКУ_ЛОГОТИПА" alt="Масштаб">
+          <span class="msht-logo-text"><strong>МАСШТАБ</strong><span>системы продаж · CRM · подбор персонала</span></span>
+        </a>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="/services">Услуги</a></li>
+          <li><a href="/cases">Кейсы</a></li>
+          <li><a href="/about">О компании</a></li>
+          <li><a href="/blog">Блог</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>Телефон: [заполнить]</li>
+          <li>Email: [заполнить]</li>
+          <li><a href="/contacts">Все контакты →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="msht-footer-bottom">
+      <span>© 2026 Масштаб. Все права защищены.</span>
+      <span>Сделано на основе брендбука компании</span>
+    </div>
+  </div>
+</footer>
+<!-- ===== КОНЕЦ БЛОКА: Футер ===== -->
