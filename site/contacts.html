@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Контакты — Масштаб</title>
+<meta name="description" content="Свяжитесь с нами, чтобы обсудить проект.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><text x="2" y="46" font-family="Manrope, sans-serif" font-weight="800" font-size="34" fill="#FFFFFF">M</text><path d="M40 30 L58 12 M58 12 L58 24 M58 12 L46 12" stroke="#FF6A00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <span class="logo-text"><strong>МАСШТАБ</strong><span>системы продаж · CRM · подбор персонала</span></span>
+    </a>
+    <nav class="nav">
+      <ul class="nav-links">
+        <li><a href="services.html">Услуги</a></li>
+        <li><a href="cases.html">Кейсы</a></li>
+        <li><a href="about.html">О компании</a></li>
+        <li><a href="blog.html">Блог</a></li>
+        <li><a href="contacts.html" aria-current="page">Контакты</a></li>
+      </ul>
+      <a href="contacts.html" class="btn btn--primary">Обсудить проект</a>
+      <button class="nav-toggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding: 56px 0;">
+  <div class="container">
+    <div class="hero-inner">
+      <h1 style="font-size: 34px;">Обсудим ваш проект</h1>
+      <p class="lead">Оставьте заявку — свяжемся в течение рабочего дня и предложим следующий шаг.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="form-grid">
+      <div>
+        <h2>Оставить заявку</h2>
+        <form class="contact-form">
+          <div class="form-field">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-field">
+            <label for="phone">Телефон или email</label>
+            <input type="text" id="phone" name="phone" required>
+          </div>
+          <div class="form-field">
+            <label for="message">Комментарий</label>
+            <textarea id="message" name="message"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Отправить</button>
+          <p class="form-status placeholder-note" style="margin-top:16px;"></p>
+        </form>
+        <p class="placeholder-note">
+          Форма пока не подключена: нужно указать, куда отправлять заявки — на email,
+          в CRM-вебхук, либо использовать встроенную форму Tilda при переносе сайта в
+          конструктор.
+        </p>
+      </div>
+      <div>
+        <h2>Контакты</h2>
+        <ul class="contact-list">
+          <li><strong>Телефон</strong> <span>[ЗАПОЛНИТЬ]</span></li>
+          <li><strong>Email</strong> <span>[ЗАПОЛНИТЬ]</span></li>
+          <li><strong>WhatsApp / Telegram</strong> <span>[ЗАПОЛНИТЬ]</span></li>
+          <li><strong>Город / офис</strong> <span>[ЗАПОЛНИТЬ]</span></li>
+        </ul>
+        <p class="placeholder-note">[ЗАПОЛНИТЬ: ссылки на соцсети и карту, если есть физический адрес]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><text x="2" y="46" font-family="Manrope, sans-serif" font-weight="800" font-size="34" fill="#FFFFFF">M</text><path d="M40 30 L58 12 M58 12 L58 24 M58 12 L46 12" stroke="#FF6A00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <span class="logo-text"><strong>МАСШТАБ</strong><span>системы продаж · CRM · подбор персонала</span></span>
+        </a>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="cases.html">Кейсы</a></li>
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="blog.html">Блог</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>Телефон: [заполнить]</li>
+          <li>Email: [заполнить]</li>
+          <li><a href="contacts.html">Все контакты →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Масштаб. Все права защищены.</span>
+      <span>Сделано на основе брендбука компании</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
